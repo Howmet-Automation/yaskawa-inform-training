@@ -1,0 +1,7 @@
+export type Question={prompt:string;options:string[];correct:number;explanation:string}
+export type Assessment={answers:Record<number,number>;graded:boolean}
+export const emptyAssessment=():Assessment=>({answers:{},graded:false})
+export function score(q:Question[],a:Assessment){return q.filter((x,i)=>a.answers[i]===x.correct).length}
+export function passed(q:Question[],a:Assessment){return q.length>0&&a.graded&&score(q,a)===q.length}
+export function selectAnswer(a:Assessment,index:number,value:number):Assessment{return {answers:{...a.answers,[index]:value},graded:false}}
+export function restoreAssessment(raw:unknown,q:Question[]):Assessment{if(!raw||typeof raw!=='object')return emptyAssessment();const a=raw as Partial<Assessment>;if(!a.answers||typeof a.answers!=='object'||Array.isArray(a.answers))return emptyAssessment();const answers:Record<number,number>={};for(const [k,v] of Object.entries(a.answers)){const i=Number(k);if(String(i)===k&&Number.isInteger(i)&&i>=0&&i<q.length&&Number.isInteger(v)&&v>=0&&v<q[i].options.length)answers[i]=v}return {answers,graded:a.graded===true&&Object.keys(answers).length===q.length}}
