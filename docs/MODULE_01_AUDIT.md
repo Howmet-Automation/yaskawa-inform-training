@@ -13,3 +13,7 @@ This increment is a condensed public development draft, not a replacement for th
 | Release | HOLD | Build verification, full migration, instructor sign-off and novice pilot outstanding. |
 
 Never mark READY based on a green deployment alone.
+
+## Expansion increment
+
+Added six practical lessons (12 total), paper tracing, fictional master comparison, accessible SVG timing diagram, missing-confirmation investigation, desk exercise and field observation worksheet. Public examples are fictional; no production excerpts added. Static content review: idealized timing arithmetic 4 versus 7 is consistent; no automatic recovery or safety bypass implied. Remaining gaps: lesson ordering needs refinement, printable worksheet styling, richer quiz coverage, full original quality gate migration, reference verification, browser and build testing, novice pilot and instructor approval. Release remains HOLD.
