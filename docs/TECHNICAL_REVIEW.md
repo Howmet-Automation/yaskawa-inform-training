@@ -1,0 +1,10 @@
+# Module 01 technical review — 2026-11-25
+Disposition: partial verification / HOLD.
+Official Yaskawa sources accessed:
+- https://knowledge.motoman.com/hc/en-us/articles/4407425435927-YRC1000-INFORM-LANGUAGE — section 2.1 DOUT, WAIT; 2.2 CALL, JUMP, NOP, COMMENT, SWITCH, CASE, IFTHEN; 2.3 INC; 2.4 MOVJ; 2.6 IF.
+- https://knowledge.motoman.com/hc/en-us/articles/34805519233170-YRC1000-Options-Instructions-for-Independent-Coordinated-Control-Function — sections 7.6.1 PSTART, 7.6.2 PWAIT, 9.2 independent control instructions. These are option-dependent, not assumed standard.
+- https://knowledge.motoman.com/hc/en-us/articles/4408154827415-YRC1000micro-INFORM-LANGUAGE
+- https://knowledge.motoman.com/hc/en-us/articles/4408164529815-YRC1000-General-Operators
+- https://knowledge.motoman.com/hc/en-us/articles/37612915659410-YRC1000-GENERAL-OPERATOR-S-MANUAL-R24
+- https://knowledge.motoman.com/hc/en-us/sections/4404868703383-Inform
+Evidence: public manual index pages establish instruction names, categories and independent-control option documentation. They do not establish exact operand syntax. Full manual sections for WAIT IN#, DOUT OT#, VJ, variable types, exported job headers, conditional expressions and PSTART/PWAIT operands remain to be read. Do not mark technical gate passed. Fictional snippets are incomplete and not executable jobs. Restricted equipment mirrors remain authoritative for machine-specific behavior. No live controller validation attempted.
