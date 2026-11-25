@@ -1,0 +1,3 @@
+const codeIds=new Set(['inform-preview','trace-inform','reading'])
+const pseudoIds=new Set(['sequence','pseudocode','machine-example','logic','parallel','compare','walkthrough','order'])
+export default function LessonExample({id,example}:{id:string;example:string}){const code=codeIds.has(id),pseudo=pseudoIds.has(id);return <figure className="lesson-example"><figcaption>{code?'INFORM · illustrative excerpt, not executable':pseudo?'Pseudocode · plain-language model':'Study notes · fictional example where applicable'}</figcaption>{code||pseudo||id==='trace'?<pre>{example}</pre>:<ul>{example.split('\n').filter(Boolean).map((line,i)=><li key={i}>{line}</li>)}</ul>}</figure>}
