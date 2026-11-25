@@ -38,3 +38,6 @@ Run 45698172803 at c3885d5: build and deploy success; logs confirm 19 unit tests
 
 ## UI workspace redesign
 5ec54b4, b51eca5, 277ea7b: compact course header, roadmap home, sticky grouped navigation, focused reading column, practice styling, collapsible references, resume by lesson ID, responsive layout and updated print rules. Browser tests adjusted for resume. No visual browser inspection or new CI results yet. Existing content and completion rules retained by source edits; regression validation required. Next: semantic lesson components and remaining exercises. HOLD.
+
+## Visual learning increment
+Run 45699576678 at 9919cfe confirmed successful. Semantic example labels, missing-branch exercise, process decomposition and expanded practice are deployed. New components BranchDiagram, SignalTimeline and InstructionTrace integrated; seventh browser test authored. Signal history uses existing feedbackScenario model, request held for illustration, no reset handshake. Instruction trace assumes initial output OFF and excludes external logic. New revision requires CI and visual review. Original HTML direct parity evidence must be independently rechecked before approval; technical review and internal lab remain outstanding. HOLD.
