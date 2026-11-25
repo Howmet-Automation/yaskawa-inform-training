@@ -1,0 +1,3 @@
+import {describe,it,expect} from 'vitest'
+import {completionStatus,canComplete} from './completion'
+describe('completion gate',()=>{const checks={labReviewed:true,instructorReviewed:true};it('requires every lesson',()=>expect(canComplete(completionStatus(['a','b'],['a'],true,checks))).toBe(false));it('requires quiz',()=>expect(canComplete(completionStatus(['a'],['a'],false,checks))).toBe(false));it('requires lab',()=>expect(canComplete(completionStatus(['a'],['a'],true,{...checks,labReviewed:false}))).toBe(false));it('requires instructor',()=>expect(canComplete(completionStatus(['a'],['a'],true,{...checks,instructorReviewed:false}))).toBe(false));it('accepts all requirements',()=>expect(canComplete(completionStatus(['a'],['a'],true,checks))).toBe(true))})
