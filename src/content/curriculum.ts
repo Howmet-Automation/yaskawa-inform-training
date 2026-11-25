@@ -1,0 +1,1 @@
+export const modules = ['Programming fundamentals','Programming logic','INFORM fundamentals','Variables and calculations','I/O and timing','Robot motion','Modular jobs','Advanced INFORM','Machine applications','Final project']
