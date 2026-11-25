@@ -1,0 +1,4 @@
+import {describe,it,expect} from 'vitest'
+import {emptyAssessment,passed,selectAnswer,restoreAssessment} from './assessment'
+const q=[{prompt:'test',options:['no','yes'],correct:1,explanation:'test'}]
+describe('assessment',()=>{it('requires grading',()=>expect(passed(q,selectAnswer(emptyAssessment(),0,1))).toBe(false));it('restores valid graded answers',()=>expect(passed(q,restoreAssessment({answers:{0:1},graded:true},q))).toBe(true));it('invalidates after editing',()=>expect(passed(q,selectAnswer({answers:{0:1},graded:true},0,0))).toBe(false));it('rejects invalid persisted answers',()=>expect(passed(q,restoreAssessment({answers:{0:9},graded:true},q))).toBe(false));it('rejects legacy pass without answers',()=>expect(passed(q,restoreAssessment({quizPassed:true},q))).toBe(false))})
