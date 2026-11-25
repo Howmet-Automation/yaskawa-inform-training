@@ -1,0 +1,6 @@
+import {useState} from 'react'
+export type Question={prompt:string;options:string[];correct:number;explanation:string}
+export default function KnowledgeCheck({questions,onPass}:{questions:Question[];onPass:(pass:boolean)=>void}){
+const [answers,setAnswers]=useState<Record<number,number>>({});const [graded,setGraded]=useState(false);
+const score=questions.filter((q,i)=>answers[i]===q.correct).length;
+return <section className="panel"><h2>Knowledge check</h2>{questions.map((q,i)=><fieldset key={i}><legend>{i+1}. {q.prompt}</legend>{q.options.map((o,j)=><label key={j}><input type="radio" name={'q'+i} checked={answers[i]===j} onChange={()=>{setAnswers(a=>({...a,[i]:j}));setGraded(false);onPass(false)}}/> {o}</label>)}{graded&&<p>{answers[i]===q.correct?'Correct.':'Review this. '} {q.explanation}</p>}</fieldset>)}<button disabled={Object.keys(answers).length!==questions.length} onClick={()=>{setGraded(true);onPass(score===questions.length)}}>Check answers</button>{graded&&<p role="status">{score}/{questions.length} correct. All answers must be correct for this check.</p>}</section>}
