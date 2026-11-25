@@ -1,0 +1,3 @@
+export type Checkpoints={labReviewed:boolean;instructorReviewed:boolean}
+export function completionStatus(ids:string[],reviewed:string[],quizPassed:boolean,checks:Checkpoints){return {lessons:ids.length>0&&ids.every(id=>reviewed.includes(id)),quiz:quizPassed,lab:checks.labReviewed,instructor:checks.instructorReviewed}}
+export function canComplete(s:ReturnType<typeof completionStatus>){return Object.values(s).every(Boolean)}
