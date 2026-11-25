@@ -32,3 +32,6 @@ Restored 80% threshold, explicit reviewed-section action, lab and instructor sel
 
 ## Browser validation increment
 Contextual navigation now retains worksheet notes in module memory; no localStorage for notes. Print text mirrors full textarea content. Reset requires confirmation. Added four Chromium Playwright tests for navigation/focus/review persistence, worksheet navigation and print-media visibility, assessment persistence and blocked completion, and mobile overflow. Deployment now requires browser tests after unit tests/build. Tests authored, not yet executed or verified. Print media visibility is not physical print pagination validation. Simulator resets on leaving its lesson by design; worksheet resets on reload/route exit by design. Technical operand and educational parity review remain open. HOLD.
+
+## Verified browser gate and content restoration
+Run 45698172803 at c3885d5: build and deploy success; logs confirm 19 unit tests, 4 browser tests, production build 1.26s. Subsequent commits 200809c, a2f870c, 2be7511, 7cb1e14 expand job reading, restore interactive five-snapshot trace, and prepare for Module 2. Fifth browser test added; new revision not yet verified. Table snapshots are fictional and omit reset logic. Full original-source parity and advanced operand review remain open; HOLD.
