@@ -25,3 +25,6 @@ Status: HOLD. Original HTML inspected: 21 sections. Current React draft has 12 l
 | next-module | checkpoint | Partial; completion gate missing |
 ## Evidence requirements
 For each row record migrated content location, comparison notes, technical reference, test evidence and reviewer status. No row passes based on section count alone. No public production excerpts or private source identifiers.
+
+## Latest implementation checkpoint
+20 ordered lessons; objectives, mental model, roles, walkthrough, INFORM preview/trace and glossary restored. Five-question quiz. CodeLab provides fictional parallel/sequential excerpts and variable/call tracing; Workshop provides four activities; FieldWorksheet provides editable printable form; FeedbackSimulator provides early/missing/late feedback; Module01 shows reading/quiz readiness and instructor rubric. All remain partial until direct baseline comparison and browser validation. Restricted source lab outstanding. No production source published. Latest implementation commit 0688f8e03b4b97f1fa1672dd7b7efe8b94db5aba.
