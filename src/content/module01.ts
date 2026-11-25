@@ -10,7 +10,7 @@ export const lessons=[
 {"id":"walkthrough","title":"Follow one complete cycle","body":"This fictional station uses descriptive placeholders, not actual signal aliases. At every step ask what the controller actually knows. Cell ready does not mean a part is present. A task request does not mean the task is complete. Completion feedback allows the next approved step only under actual machine requirements.","example":"START\nCell ready? NO → wait for ready\nYES ↓\nPart present? NO → defined missing-part response\nYES ↓\nRequest robot task\nTask complete? NO → appropriate wait/fault path\nYES ↓\nReport station step complete\nWait for next permitted step\n\nTrace:\nReady OFF: do not start\nReady ON, part OFF: do not request task\nBoth ON: start conditions met in this example\nRequest ON, complete OFF: completion unconfirmed\nComplete ON: defined completion condition received","task":"Trace ready becoming true before part present, then a cycle where completion never arrives.","answer":"The first cannot request the task until both conditions are satisfied. The second cannot report normal completion merely because the request was sent."},
 {"id":"trace","title":"Trace a cycle on paper","body":"Read the sequence one line at a time. Keep a record of the signals and the current instruction. Do not jump ahead because you know what the machine normally does. In this fictional example, the clamp request is active but confirmation is delayed.","example":"Step | Request | Feedback | Program state\n1    | OFF     | OFF      | Before request\n2    | ON      | OFF      | Waiting\n3    | ON      | ON       | Condition met","task":"Add a fourth row for a new cycle where feedback never arrives. What information would you collect before troubleshooting?","answer":"Record the waiting instruction, actual signal states, expected signal source, relevant drawings and any timeout or alarm. Do not force a signal or assume the device is safe."},
 {id:'logic',title:'Decisions and abnormal paths',body:'A condition determines which path the program takes. A wait is different from a decision: a wait blocks progress until its condition is satisfied. A timeout and recovery path must be designed for the actual equipment.',example:'IF part is present\n  request next step\nELSE\n  follow approved missing-part response',task:'Draw both branches and explain where each ends.',answer:'The present branch requests the next step. The missing branch follows a defined response rather than silently continuing.'},
-{"id":"inform-preview","title":"First look at INFORM","body":"Yaskawa INFORM is the robot programming language used by controllers such as YRC1000. A job contains instructions and associated data. /JOB identifies a job file and //NAME supplies its name; these are header fields, not executable instructions. NOP is a no-operation instruction commonly used at the beginning; END ends the job. INFORM expects specific formats, tags and data. Pendant instruction registration helps construct valid commands. Available instructions depend on controller, software, application and teaching settings.","example":"/JOB\n//NAME SAMPLE_JOB\nNOP\nEND\n\nIncomplete motion format illustration:\nMOVJ VJ=25.00","task":"What does the motion line tell you, and what does it not tell you?","answer":"MOVJ indicates joint-interpolated motion; VJ=25.00 illustrates a percentage joint-speed setting. Taught position data is omitted. The line does not establish path clearance, tool/frame context or appropriate speed. This is not an executable job; verify syntax against the applicable manual."},
+{"id":"inform-preview","title":"First look at INFORM","body":"Yaskawa INFORM is the robot programming language used by controllers such as YRC1000. A job contains instructions and associated data. /JOB identifies a job file and //NAME supplies its name; these are header fields, not executable instructions. NOP is a no-operation instruction commonly used at the beginning; END ends the job. INFORM expects specific formats, tags and data. Pendant instruction registration helps construct valid commands. Available instructions depend on controller, software, application and teaching settings. Comments explain intent to a reader; they are not executable instructions and do not enforce the conditions they describe.","example":"/JOB\n//NAME SAMPLE_JOB\nNOP\nEND\n\nIncomplete motion format illustration:\nMOVJ VJ=25.00","task":"What does the motion line tell you, and what does it not tell you?","answer":"MOVJ indicates joint-interpolated motion; VJ=25.00 illustrates a percentage joint-speed setting. Taught position data is omitted. The line does not establish path clearance, tool/frame context or appropriate speed. This is not an executable job; verify syntax against the applicable manual."},
 {"id":"trace-inform","title":"First controller trace","body":"Read this illustrative, incomplete training excerpt from top to bottom. The controller waits for input 10, turns output 20 on, waits for input 11, then turns output 20 off. The example deliberately omits timeout and recovery logic. Do not load or execute it on equipment.","example":"/JOB\n//NAME WAIT_EXAMPLE\nNOP\nWAIT IN#(10)=ON\nDOUT OT#(20) ON\nWAIT IN#(11)=ON\nDOUT OT#(20) OFF\nEND","task":"Input 10 turns on, but input 11 never does. Where is the controller waiting? Does output 20 turn off through this sequence? Is there a timeout?","answer":"It remains at WAIT IN#(11)=ON. The OFF instruction is after the wait and is not reached in this simplified trace. No timeout is shown. Other controller logic or faults could affect physical outputs; do not infer actual equipment state."},
 {id:'reading',title:'Read a job before writing one',body:'Find the entry point, setup, normal path, calls and abnormal exits. A called job may hide important details. Record what you know and what still needs verification.',example:'NOP\nCALL JOB:DEMO_TASK\nEND',task:'What can you conclude about DEMO_TASK from its name?',answer:'Only that the example calls a job with that name. Inspect the called job to establish its behavior. This is fictional, incomplete training code.'},
 {"id":"fault","title":"Investigate a missing confirmation","body":"A fictional station stops progressing after issuing a clamp request. The request is on, but the confirmation is off. This observation narrows the investigation; it does not establish a failed sensor. Possible explanations include the device not moving, a signal path problem, or an incorrect expectation about the signal. Follow approved troubleshooting procedures.","example":"Observed: request ON, confirmation OFF\nKnown: sequence is waiting\nUnknown: physical state and reason for missing feedback","task":"List three pieces of evidence that would distinguish these explanations without changing the robot program.","answer":"Review the expected I/O mapping, authorized observation of physical state, and available PLC/controller diagnostics. Any physical inspection must follow applicable safety procedures."},
@@ -22,4 +22,55 @@ export const lessons=[
 {"id":"worksheet","title":"Field observation and teach-back","body":"With an instructor, choose an approved read-only program example for the exact machine. Record the machine, job and revision. Find the entry, a call, a condition, a wait and an exit if present. Explain the evidence for each conclusion and mark unknowns. No live operation is required.","example":"Machine / controller / job / revision:\nEntry and setup:\nNormal path:\nCalled jobs:\nWaiting condition:\nAbnormal path:\nUnknowns and sources to check:","task":"Explain your trace to the instructor without reading your notes. Repeat the request-versus-feedback explanation next shift.","answer":"The instructor should check sequence accuracy, evidence, distinction between command and feedback, recognition of unknowns, and safe boundaries. A quiz alone cannot establish practical competence."},
 {"id":"glossary","title":"Words you will hear","body":"A master job organizes a robot sequence; a sub-job handles a piece of work. Position data stores location/orientation information used by motion. An interlock is a required condition; process interlocks are not substitutes for safety-rated functions. A handshake is an agreed exchange of signals such as request, acknowledge, busy and complete. Recovery is the defined method of returning to an acceptable state after interruption. Teach, Play and Remote are controller modes whose permissions depend on the applicable manual and site procedure.","example":"Job = named robot program\nInstruction = executable command\nCondition = fact checked by logic\nHandshake = agreed signal exchange\nRecovery = defined return to acceptable state","task":"Explain the difference between a handshake and a single output.","answer":"A handshake defines how devices exchange and interpret signals; a single output alone does not establish acknowledgement or completion."}
 ]
-export const questions=[{prompt:'An output requests a clamp. What proves the request completed?',options:['The output alone','Verified feedback appropriate to the machine','The job name'],correct:1,explanation:'A request is not confirmation.'},{prompt:'Two tasks start before either wait. When can the master pass both waits?',options:['After the first start','After task A alone','After both tasks finish'],correct:2,explanation:'Both waits must be satisfied.'},{prompt:'What should you do before applying a pattern to another cell?',options:['Verify its exact program and documentation','Copy the sequence unchanged','Assume the same signals'],correct:0,explanation:'Machine-specific differences matter.'},{"prompt":"A controller is waiting for a confirmation that is off. What can you conclude?","options":["The sensor is definitely broken","The expected condition is not satisfied; investigate evidence","The robot is safe to enter"],"correct":1,"explanation":"A missing signal does not establish its cause or a safe physical state."},{"prompt":"What is the purpose of pseudocode before INFORM?","options":["To replace controller documentation","To run the robot without teaching positions","To establish sequence and decisions before choosing syntax"],"correct":2,"explanation":"Pseudocode separates the intended logic from controller-specific implementation."}]
+export const questions=[
+  {
+    "prompt": "What is the main job of a robot program?",
+    "options": [
+      "Make the robot move as fast as possible",
+      "Define ordered instructions and logic for the controller",
+      "Replace the PLC and safety devices"
+    ],
+    "correct": 1,
+    "explanation": "A job defines instructions and their execution logic."
+  },
+  {
+    "prompt": "A controller requests a clamp to close. What does that prove?",
+    "options": [
+      "Only that the request was sent; confirmation is separate",
+      "The clamp is physically closed",
+      "The robot can safely move immediately"
+    ],
+    "correct": 0,
+    "explanation": "A request is not confirmation or safety authorization."
+  },
+  {
+    "prompt": "What if you do not know which I/O number a SCAR machine uses?",
+    "options": [
+      "Copy another SCAR cell",
+      "Pick an unused number",
+      "Verify the exact machine program and electrical documentation"
+    ],
+    "correct": 2,
+    "explanation": "Signal assignments are machine-specific."
+  },
+  {
+    "prompt": "What does a comment do in a job?",
+    "options": [
+      "Executes the described action",
+      "Provides information to a reader; it is not executable",
+      "Automatically checks motion safety"
+    ],
+    "correct": 1,
+    "explanation": "Comments explain intent but do not execute or enforce it."
+  },
+  {
+    "prompt": "When should a required condition be checked?",
+    "options": [
+      "Before an action that depends on it",
+      "Only after the action",
+      "Whenever there is room"
+    ],
+    "correct": 0,
+    "explanation": "Check prerequisites before dependent actions; ongoing monitoring and safeguarding depend on the actual design."
+  }
+]
