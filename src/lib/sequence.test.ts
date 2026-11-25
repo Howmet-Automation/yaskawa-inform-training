@@ -1,0 +1,3 @@
+import {describe,it,expect} from 'vitest'
+import {nextState} from './sequence'
+describe('training sequence',()=>{it('waits without feedback',()=>expect(nextState(false,false)).toBe('Waiting for feedback'));it('continues with feedback',()=>expect(nextState(true,false)).toBe('Continue'));it('does not resume automatically after timeout',()=>expect(nextState(true,true)).toBe('Fault — review feedback'))})
