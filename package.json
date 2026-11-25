@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run src",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -26,6 +27,7 @@
     "@mdx-js/rollup": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "tailwindcss": "^4.0.0",
-    "@tailwindcss/vite": "^4.0.0"
+    "@tailwindcss/vite": "^4.0.0",
+    "@playwright/test": "^1.51.0"
   }
 }
