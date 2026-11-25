@@ -35,3 +35,6 @@ Contextual navigation now retains worksheet notes in module memory; no localStor
 
 ## Verified browser gate and content restoration
 Run 45698172803 at c3885d5: build and deploy success; logs confirm 19 unit tests, 4 browser tests, production build 1.26s. Subsequent commits 200809c, a2f870c, 2be7511, 7cb1e14 expand job reading, restore interactive five-snapshot trace, and prepare for Module 2. Fifth browser test added; new revision not yet verified. Table snapshots are fictional and omit reset logic. Full original-source parity and advanced operand review remain open; HOLD.
+
+## UI workspace redesign
+5ec54b4, b51eca5, 277ea7b: compact course header, roadmap home, sticky grouped navigation, focused reading column, practice styling, collapsible references, resume by lesson ID, responsive layout and updated print rules. Browser tests adjusted for resume. No visual browser inspection or new CI results yet. Existing content and completion rules retained by source edits; regression validation required. Next: semantic lesson components and remaining exercises. HOLD.
