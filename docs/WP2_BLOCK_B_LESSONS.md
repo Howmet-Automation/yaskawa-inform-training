@@ -66,7 +66,7 @@ If ACK or DONE already ON:
 Otherwise:
     Recheck entry until READY and PART_PRESENT are ON
     While rechecking, stop if ACK or DONE becomes unexpectedly ON
-    If START drops before request, return to idle observation
+    If START drops before request, stop this trace as outside the model
     Set REQUEST ON when all entry conditions are met
     Wait for ACK and DONE before the model deadline
     If deadline reached first:
@@ -78,7 +78,7 @@ Otherwise:
         Set REPORT OFF
         Return to clean idle
 ```
-The deadline starts with REQUEST in this lesson. The model assumes signals stay as defined during the active cycle. Unexpected active signal changes and actual reset/fault-output behavior are outside scope. On fault, no normal REPORT is issued. There is no automatic retry or physical action implied. The pre-request START drop is an explicit idle-observation convention, not a claimed production behavior; WP1 previously left that case unspecified.
+The deadline starts with REQUEST in this lesson. The model assumes signals stay as defined during the active cycle. Unexpected active signal changes and actual reset/fault-output behavior are outside scope. On fault, no normal REPORT is issued. There is no automatic retry or physical action implied. If START drops during entry, this trace stops as outside the specified model; no equipment response or reset is inferred.
 
 **Supported practice.** Complete the successful path after DONE: set ___ ON; set ___ OFF; wait for ___; clear ___.
 Answer: REPORT; REQUEST; START/ACK/DONE clear; REPORT. Keep normal reporting separate from reset.
@@ -145,4 +145,4 @@ Without looking: explain ACK versus DONE; draw a missing-part recheck; describe 
 Key: acceptance versus finished; missing part remains entry; false branch skips only body; stale level predates request; release REQUEST, PLC clear START/ACK/DONE, clear REPORT. If uncertain, return to the appropriate worked trace. Next block introduces actual INFORM excerpt reading, not a complete implementation of this station.
 
 ## Draft gate
-Five IDs retained; objectives O1–O5/O8. Original machine example, walkthrough, trace, pseudocode and missing-part/debug intent mapped. One stable dictionary and explicit separate cases, complete worked/faded/independent answers. Model A is conceptual; START drop before request added as an explicit convention and requires architecture alignment before integration. No app edits, new automated test or observed learner outcomes. E02/E03/E05/E06/E10/E11/E15/E18 have draft evidence only; no findings closed. Next WP2 Block C.
+Five IDs retained; objectives O1–O5/O8. Original machine example, walkthrough, trace, pseudocode and missing-part/debug intent mapped. One stable dictionary and explicit separate cases, complete worked/faded/independent answers. Model A is conceptual; START dropping before request is now explicitly outside the trace scope, consistent with WP1. No app edits, new automated test or observed learner outcomes. E02/E03/E05/E06/E10/E11/E15/E18 have draft evidence only; no findings closed. Next WP2 Block C.
