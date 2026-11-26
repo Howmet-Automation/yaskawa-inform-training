@@ -60,3 +60,6 @@ Baseline: Yaskawa_INFORM_Module_01_Audited_Expanded.html, section text counts vi
 | next-module | 142 | assessment / completion | Explicit review, 80%, lab and instructor checks; next-module preview |
 
 Verified CI at c3885d5: 19 unit and 4 browser tests passed (45698172803). Latest run 45698519755 pending at inspection. Internal lab, exact advanced operands, full row-level review and instructor acceptance remain HOLD.
+
+## WP1 instructional revision checkpoint
+The WP0 design contract maps all 21 original sections and all 22 current lesson IDs. WP1 learning architecture (23743cd) preserves all those targets and moves advanced previews to an accessible guided extension; restricted SCAR material remains separate. Proposed reordered route and stable signal dictionary are design evidence only; no lesson text removed or changed. Original coverage remains subject to WP2 implementation and WP5 row-level review. HOLD.
