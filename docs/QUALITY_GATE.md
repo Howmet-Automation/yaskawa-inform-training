@@ -51,3 +51,6 @@ Use at least three methods beyond passive reading where appropriate: worked exam
 Trainee page, instructor notes/key, sources and applicability, completed gate, next-module handoff. For migrations also require baseline parity inventory and evidence for every row.
 ## Release record
 Module/version/date; controller/application; source references; open issues; technical reviewer; instructor reviewer; novice pilot; test evidence; final disposition. Public and restricted internal versions reviewed separately.
+
+## Mandatory instructional acceptance supplement
+For Module 01, apply the [instructional revision plan](MODULE_01_PEDAGOGY_REVISION_PLAN.md) and close its findings with evidence before READY. For every subsequent module, require an objective-to-evidence matrix; prerequisite order; consistent examples and explicit assumptions; worked, supported and independent practice with complete feedback; authentic transfer assessment and critical misconception remediation; contextual technical references; realistic session boundaries; and observed instructor and novice-pilot evidence. Advanced previews must be distinguished from required mastery. A passing quiz, review click or green deployment alone cannot establish learning. Original technical, safety, privacy and independent review requirements remain mandatory.
