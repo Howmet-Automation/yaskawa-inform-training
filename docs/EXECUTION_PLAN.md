@@ -13,3 +13,6 @@ React is delivery infrastructure, not permission to shorten lessons. Preserve ed
 7. Module 02 blocked until Module 01 release requirements satisfied.
 ## Session handoff
 Read this plan, MODULE_01_PARITY.md, QUALITY_GATE.md and MODULE_01_AUDIT.md before editing. Update parity and audit evidence after every increment. Record commit, test results, unresolved gaps, next task. Do not claim a test ran without evidence.
+
+## Instructional quality revision — current controlling phase
+The former migration work is superseded for scheduling purposes by [Module 01 deep instructional audit and controlled revision plan](MODULE_01_PEDAGOGY_REVISION_PLAN.md). Baseline revision a82d53e passed 21 unit and 11 browser tests, but educational readiness remains HOLD. Execute WP0 through WP6 in order, close findings E01–E20 with evidence, and preserve the original quality gate and parity requirements. First deliverable: objective-to-evidence matrix and baseline/design contract (WP0), not new UI or Module 02. Read the revision plan at each handoff and record the current package, open findings, evidence, and next step. Do not conflate technical deployment with learning validation.
