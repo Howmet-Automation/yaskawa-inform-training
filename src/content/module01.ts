@@ -73,4 +73,10 @@ export const questions=[
     "correct": 0,
     "explanation": "Check prerequisites before dependent actions; ongoing monitoring and safeguarding depend on the actual design."
   }
+,
+{"prompt":"What is the purpose of pseudocode before writing INFORM?","options":["To define the intended sequence and decisions","To create an executable robot job","To replace machine documentation"],"correct":0,"explanation":"Pseudocode lets you reason about behavior before selecting controller instructions."},
+{"prompt":"A WAIT condition is false in the classroom trace. What happens?","options":["The next output instruction executes","The trace remains at the WAIT","The input is automatically forced on"],"correct":1,"explanation":"The illustrated wait blocks progression; no timeout is shown."},
+{"prompt":"A completion report is outside an IF block. The condition is false. What happens in the missing-branch exercise?","options":["The report is skipped automatically","The task starts anyway","The task is skipped but the report is reached"],"correct":2,"explanation":"Instructions after the conditional block can execute even when its body is skipped."},
+{"prompt":"Two independent tasks start before the master waits for both. What must happen before it passes both waits?","options":["Both tasks must finish","Only the first task must finish","The second task must start"],"correct":0,"explanation":"Both waits must be satisfied in the illustrated model; actual coordination requires controller-specific verification."},
+{"prompt":"Feedback arrives after a timeout in the fictional simulator. What happens?","options":["The fault always clears","The fictional fault remains latched","The timeout never occurred"],"correct":1,"explanation":"Late confirmation does not automatically clear this model's latched fault. Actual recovery is machine-specific."}
 ]
