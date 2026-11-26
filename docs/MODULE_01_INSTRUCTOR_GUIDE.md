@@ -18,7 +18,7 @@ Continue parallel work, code lab, worksheet and assessment in a later block if n
 | Cycle trace | Ready and part prerequisites; request before confirmation | Reporting complete while feedback OFF | Which row cannot be reached? |
 | Missing branch | False condition skips task but reaches report outside block | Assuming ENDIF ends job | Trace the next instruction after ENDIF. |
 | INFORM trace | WAIT blocks; output stays ON in model until OFF executes | Assuming wait changes output | Which instruction changes output? |
-| Feedback simulator | Early confirmation normal; missing/late fault at 5 s | Assuming late feedback clears fault | What additional recovery logic would need verification? |
+| Feedback simulator | Early confirmation normal; missing/late fault at selected 3 or 5 s | Assuming late feedback clears fault | What additional recovery logic would need verification? |
 | Parallel comparison | Idealized 4 versus 7 units; both waits required | Assuming physical coordination is safe | What does the example not prove? |
 | Code lab | Trace variables, calls, waits and conditional recheck; record unknowns | Guessing job behavior from names | Where is the variable written? |
 | Field worksheet | Exact machine, revision, observed path, evidence and unknowns | Transferring assumptions between cells | Which source establishes this signal? |
