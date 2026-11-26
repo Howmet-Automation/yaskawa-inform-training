@@ -63,3 +63,6 @@ Verified CI at c3885d5: 19 unit and 4 browser tests passed (45698172803). Latest
 
 ## WP1 instructional revision checkpoint
 The WP0 design contract maps all 21 original sections and all 22 current lesson IDs. WP1 learning architecture (23743cd) preserves all those targets and moves advanced previews to an accessible guided extension; restricted SCAR material remains separate. Proposed reordered route and stable signal dictionary are design evidence only; no lesson text removed or changed. Original coverage remains subject to WP2 implementation and WP5 row-level review. HOLD.
+
+## WP2 Block A content draft
+WP2_BLOCK_A_LESSONS.md maps original objectives, mental-model, sequence and signals-and-roles, plus portions of machine-example, practice and debug. Six current IDs retained. Six process questions, sandwich analogy, order dependency, signal direction, device roles, request versus completion and fixture-clear prerequisite reasoning preserved. Independent checks accept both valid orderings under explicit assumptions. Additional worked/faded/independent examples and retrieval added. No app replacement yet; remaining blocks and full original-content review pending. HOLD.
