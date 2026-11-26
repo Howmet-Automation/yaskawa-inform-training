@@ -23,6 +23,14 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
+      - name: Upload browser review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: module-01-browser-review
+          path: test-results/
+          if-no-files-found: warn
+          retention-days: 14
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
