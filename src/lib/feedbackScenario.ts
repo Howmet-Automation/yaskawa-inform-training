@@ -1,2 +1,2 @@
 export type Scenario='early'|'missing'|'late'
-export function feedbackState(scenario:Scenario,elapsed:number){const feedback=(scenario==='early'&&elapsed>=2)||(scenario==='late'&&elapsed>=7);const fault=scenario!=='early'&&elapsed>=5;return {feedback,fault,state:fault?'Timeout — review required':feedback?'Confirmation received — normal path':'Waiting for confirmation'}}
+export function feedbackState(scenario:Scenario,elapsed:number,timeout:3|5=5){const feedback=(scenario==='early'&&elapsed>=2)||(scenario==='late'&&elapsed>=7);const fault=scenario!=='early'&&elapsed>=timeout;return {feedback,fault,state:fault?'Timeout — review required':feedback?'Confirmation received — normal path':'Waiting for confirmation'}}
