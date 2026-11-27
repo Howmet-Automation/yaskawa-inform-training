@@ -29,3 +29,8 @@
 
 /* Inline links must not rely on color alone. */
 .app-frame main p a:not(.primary-link){text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1px}
+
+/* Emphasize progression, not reset, inside learning activities. */
+.lesson-content .panel .lesson-actions button:last-child{background:transparent;color:#e5e7eb;font-weight:400}
+.lesson-content .panel .lesson-actions button.primary-action{background:#7dd3fc;color:#10151e;font-weight:650}
+.simulation-controls select,.rubric-row select{border:1px solid #64748b;border-radius:6px;padding:8px}
