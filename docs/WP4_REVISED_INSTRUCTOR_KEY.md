@@ -1,19 +1,19 @@
 # Module 01 — Revised instructor key
-Review draft. Companion to WP4 blueprint and module01-core-1 assessment. Classroom only. Actual approval must be recorded through approved internal processes; no website score or checkbox grants equipment authorization. Do not assign the public checklist as a certification. Source and controller verification WP5; independent key review and observed pilot WP6.
+Review draft. Companion to WP4 blueprint and module01-core-2 assessment. Classroom only. Actual approval must be recorded through approved internal processes; no website score or checkbox grants equipment authorization. Do not assign the public checklist as a certification. Source and controller verification WP5; independent key review and observed pilot WP6.
 
 ## Scenario key
 | Item | Answer | Reason / misconception to examine |
 |---|---|---|
-| K1 | A | Both prerequisites precede request; completion evidence precedes report. Independent checks may swap. Critical. |
-| K2 | B | Direction depends on the named device; sender output is receiver input. |
-| K3 | C | ACK is acceptance, not completion. DONE OFF alone does not diagnose physical failure. Critical. |
-| K4 | A | False IF skips body; subsequent report is still reached. IF is not WAIT. |
-| K5 | B | Stated entry recheck remains waiting; no request or success report; no invented timeout. Critical. |
+| K1 | C | Both prerequisites precede request; completion evidence precedes report. Independent checks may swap. Critical. |
+| K2 | A | Direction depends on the named device; sender output is receiver input. |
+| K3 | B | ACK is acceptance, not completion. DONE OFF alone does not diagnose physical failure. Critical. |
+| K4 | B | False IF skips body; subsequent report is still reached. IF is not WAIT. |
+| K5 | A | Stated entry recheck remains waiting; no request or success report; no invented timeout. Critical. |
 | K6 | C | Name metadata; DOUT ON occurs; false WAIT blocks later OFF in model. Critical. |
-| K7 | A | Synchronous caller waits for normal return; called job remains at WAIT. |
-| K8 | B | Identify missing evidence, distinguish hypotheses with approved history and mapping/diagnostics. Critical. |
-| K9 | C | Exact applicable revision, controller, mapping and called logic establish behavior, not name/date alone. |
-| K10 | A | Reported process-ready does not establish safety-rated permission or continued clearance. Critical. |
+| K7 | B | Synchronous caller waits for normal return; called job remains at WAIT. |
+| K8 | C | Identify missing evidence, distinguish hypotheses with approved history and mapping/diagnostics. Critical. |
+| K9 | A | Exact applicable revision, controller, mapping and called logic establish behavior, not name/date alone. |
+| K10 | B | Reported process-ready does not establish safety-rated permission or continued clearance. Critical. |
 
 Score: at least 8/10 and all K1/K3/K5/K6/K8/K10 correct. Review every miss. Knowledge check is open study/remediation, not secure examination. Answers are client-side and public; use fresh instructor-selected equivalent scenarios for actual independent assessment.
 
