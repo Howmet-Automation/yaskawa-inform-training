@@ -1,0 +1,17 @@
+import {describe,it,expect} from 'vitest'
+import {scenarioQuestions,practicalCriteria} from '../content/revisedAssessment'
+import {newRecord,knowledgePassed,criticalMisses,requirements,eligible,editAnswer,editRating,gradeAttempt,restoreRecord} from './revisedProgress'
+const perfect=()=>({graded:true,answers:Object.fromEntries(scenarioQuestions.map((q,i)=>[i,q.correct]))})
+const wrong=(i:number)=>(scenarioQuestions[i].correct+1)%scenarioQuestions[i].options.length
+describe('revised assessment gate',()=>{
+ it('maps all objectives exactly once with six critical items',()=>{expect(scenarioQuestions.map(q=>q.objective)).toEqual(Array.from({length:10},(_,i)=>'O'+(i+1)));expect(scenarioQuestions.filter(q=>q.critical).length).toBe(6);for(const q of scenarioQuestions){expect(new Set(q.options).size).toBe(q.options.length);expect(q.correct).toBeGreaterThanOrEqual(0);expect(q.correct).toBeLessThan(q.options.length)}})
+ it('allows 8/10 with critical items correct',()=>{const a=perfect();a.answers[1]=wrong(1);a.answers[3]=wrong(3);expect(knowledgePassed(a)).toBe(true)})
+ it('rejects high score with critical error',()=>{const a=perfect();a.answers[0]=wrong(0);expect(knowledgePassed(a)).toBe(false);expect(criticalMisses(a)).toEqual(['K1'])})
+ it('rejects below 80%, incomplete, invalid and ungraded attempts',()=>{const a=perfect();for(const i of [1,3,6])a.answers[i]=wrong(i);expect(knowledgePassed(a)).toBe(false);const b=perfect();delete b.answers[1];expect(knowledgePassed(b)).toBe(false);expect(knowledgePassed({...perfect(),graded:false})).toBe(false);expect(knowledgePassed({...perfect(),answers:{...perfect().answers,1:99}})).toBe(false)})
+ it('does not grade incomplete answers',()=>expect(gradeAttempt(newRecord()).attempt.graded).toBe(false))
+ it('requires core, knowledge, each rating and instructor',()=>{const r={...newRecord(),attempt:perfect(),ratings:practicalCriteria.map(()=>2 as const),instructorRecorded:true};expect(eligible(r,true)).toBe(true);expect(eligible(r,false)).toBe(false);expect(eligible({...r,instructorRecorded:false},true)).toBe(false);expect(requirements({...r,ratings:[2,2,2,2,1]},true).practical).toBe(false)})
+ it('editing answers invalidates grade, instructor record and completion',()=>{const r={...newRecord(),attempt:perfect(),instructorRecorded:true,completed:true};const next=editAnswer(r,0,wrong(0));expect(next.attempt.graded).toBe(false);expect(next.instructorRecorded).toBe(false);expect(next.completed).toBe(false)})
+ it('editing practical ratings invalidates signoff and completion',()=>{const r={...newRecord(),instructorRecorded:true,completed:true};expect(editRating(r,0,1)).toMatchObject({ratings:[1,null,null,null,null],instructorRecorded:false,completed:false})})
+ it('rejects old versions and invalid restored values',()=>{expect(restoreRecord({...newRecord(),version:'older',completed:true},true)).toEqual(newRecord());expect(restoreRecord({...newRecord(),attempt:{answers:{0:99},graded:true},ratings:[2,2,99],instructorRecorded:true,completed:true},true)).toMatchObject({attempt:{answers:{},graded:false},ratings:[2,2,null,null,null],instructorRecorded:false,completed:false})})
+ it('restores completion only when current requirements hold',()=>{const r={...newRecord(),attempt:perfect(),ratings:practicalCriteria.map(()=>2 as const),instructorRecorded:true,completed:true};expect(restoreRecord(r,true).completed).toBe(true);expect(restoreRecord(r,false).completed).toBe(false)})
+})
