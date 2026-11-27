@@ -26,3 +26,6 @@
 
 /* Keyboard access and practical comparison */
 .skip-link{position:absolute;z-index:20;top:8px;left:8px;transform:translateY(-200%);background:#10151e;color:#7dd3fc;padding:10px 16px;border:2px solid #7dd3fc;border-radius:5px}.skip-link:focus{transform:none}#training-main:focus-visible{outline:2px solid #7dd3fc;outline-offset:-2px}.signal-grid dd small{font-weight:400}@media print{.skip-link{display:none!important}}
+
+/* Inline links must not rely on color alone. */
+.app-frame main p a:not(.primary-link){text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1px}
