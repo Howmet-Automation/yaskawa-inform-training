@@ -23,3 +23,6 @@
 
 /* Revised assessment: readable scenario groups and practical ratings */
 .assessment-feedback{border-left:3px solid #7dd3fc;background:#1c2838;padding:8px 14px;margin-top:12px}.rubric-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,220px);gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #46556a}.rubric-row select{max-width:100%;width:100%}.lesson-content fieldset legend{max-width:100%;white-space:normal;line-height:1.5;overflow-wrap:anywhere}@media(max-width:560px){.rubric-row{grid-template-columns:minmax(0,1fr);gap:6px}}
+
+/* Keyboard access and practical comparison */
+.skip-link{position:absolute;z-index:20;top:8px;left:8px;transform:translateY(-200%);background:#10151e;color:#7dd3fc;padding:10px 16px;border:2px solid #7dd3fc;border-radius:5px}.skip-link:focus{transform:none}#training-main:focus-visible{outline:2px solid #7dd3fc;outline-offset:-2px}.signal-grid dd small{font-weight:400}@media print{.skip-link{display:none!important}}
