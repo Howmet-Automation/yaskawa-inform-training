@@ -17,7 +17,7 @@ Model B is the timed slice of the inspection station: REQUEST goes ON at time ze
 | 5 | Normal outcome recorded | Timeout latched | Timeout latched |
 | 7 | Normal outcome recorded | Fault remains | DONE ON, fault remains |
 
-ACK is ON in all three after second 1. This table describes the timed slice, not the full Model A reset sequence. For the early case, a normal outcome is recorded once both reports arrive; subsequent graph time is just history.
+ACK is ON in all three after second 1. This table describes the timed slice, not the full Model A reset sequence. The latch is a deliberate classroom policy, not an intrinsic INFORM WAIT timeout behavior. An actual YRC1000 WAIT with a time limit may advance on expiry without the condition being satisfied; the surrounding approved logic must determine the response. For the early case, a normal outcome is recorded once both reports arrive; subsequent graph time is just history.
 
 **Supported practice.** Change deadline to 3 seconds. Does the early case change? Does late feedback clear the fault?
 Key: early at 2 is still before deadline; late misses either deadline. No automatic clearing.
@@ -45,6 +45,8 @@ Key: START/READY/PART_PRESENT/ACK/DONE PLC→robot; REQUEST/REPORT robot→PLC. 
 
 **Activity 4: teach it back.** Explain Model C's false WAIT and already-true WAIT without reading the solution. Identify at least two facts missing from that code fragment.
 Key: false condition blocks; already true permits level check to pass, not evidence of fresh completion. Other prerequisites, ACK, REPORT, reset, timeout, actual signal definitions and external logic omitted.
+**Next-shift retrieval.** At the beginning of your next study session, take five minutes without notes: redraw the request and feedback exchange, explain why an output is not physical completion, and predict where a false WAIT stops. Compare with the lesson keys afterward. If your instructor has covered the guided extension, also explain both task starts and waits from memory, then check the source.
+
 Evidence: keep four fictional artifacts. If a partner participates, swap roles; if alone, read the answer after each attempt and correct the trace. No real source needed for this activity.
 
 ## D3 — Solve a new problem independently
@@ -116,7 +118,7 @@ Key criteria: correct current instruction and job, outputs and reported values; 
 Instructor review: observe an unfamiliar example; require correction of critical misunderstandings about waits, request/feedback, normal completion and process versus safety before approval. Formal rubric and scoring belong to WP4.
 
 ## Block D retrieval / stopping point
-Without notes: explain observation vs hypothesis; identify what a late DONE changes and does not change; trace a call with a false wait; name two evidence sources; explain why process-ready alone does not authorize motion. Check against D1–D5. Next: core assessment when WP4 is implemented. Parallel/structured INFORM is a guided extension, not a prerequisite for core mastery.
+Without notes: explain observation vs hypothesis; identify what a late DONE changes and does not change; trace a call with a false wait; name two evidence sources; explain why process-ready alone does not authorize motion. Check against D1–D5. Next: core assessment and practical review. Module 02 will develop conditions, branches and loops after Module 01 acceptance. Parallel/structured INFORM is a guided extension, not a prerequisite for core mastery.
 
 ## Draft gate
 Five IDs retained. Original troubleshooting, simulator, workshop, independent practice, field-notes and transfer intent mapped; four workshop methods preserved and extended. Draft aligns Model B and C assumptions, fictional worksheet privacy, full keys and critical misconceptions. Existing website simulator and worksheet not yet aligned; WP3 must implement and test. O1/O2/O3/O4/O5/O7/O8/O9/O10 supported. No actual learner result or technical approval. Next guided extension and glossary, then full WP2 desk check.
