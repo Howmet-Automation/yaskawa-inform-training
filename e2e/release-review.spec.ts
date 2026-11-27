@@ -77,8 +77,6 @@ test('contextual reference opens and links to appropriate official source',async
 })
 test('revised worksheet print excludes navigation and preserves lengthy notes',async({page},info)=>{
  await page.setViewportSize({width:820,height:1056})
- await page.goto(route)
- await page.getByRole('button',{name:/Browse lessons/}).click().catch(()=>{})
  await openLesson(page,'D · Troubleshoot and transfer','Document evidence and explain your trace')
  const fields=page.locator('.print-sheet textarea')
  await expect(fields).toHaveCount(8)
