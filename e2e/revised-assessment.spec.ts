@@ -1,7 +1,7 @@
 import {test,expect,type Page} from '@playwright/test'
 const route='/yaskawa-inform-training/#/module/01/revised'
 async function openAssessment(page:Page){await page.goto(route);await page.getByRole('navigation',{name:'Revised lesson sections'}).getByRole('button',{name:'Core assessment and checklist',exact:true}).click();await expect(page.getByRole('heading',{name:'Core assessment and checklist'})).toBeVisible()}
-const answerKey=[0,1,2,0,1,2,0,1,2,0]
+const answerKey=[2,0,1,1,0,2,1,2,0,1]
 async function answer(page:Page,miss:number[]=[]){for(let i=0;i<10;i++)await page.locator('input[name="revised-K'+(i+1)+'"]').nth(miss.includes(i)?(answerKey[i]+1)%3:answerKey[i]).check();await page.getByRole('button',{name:'Check scenario answers'}).click()}
 test('critical error blocks high score; remediation returns to relevant lesson',async({page})=>{
  await openAssessment(page);const grade=page.getByRole('button',{name:'Check scenario answers'});await expect(grade).toBeDisabled()
@@ -9,7 +9,7 @@ test('critical error blocks high score; remediation returns to relevant lesson',
  await answer(page,[0]);await expect(page.getByText('9/10 correct · Knowledge gate not met',{exact:true})).toBeVisible()
  await page.getByRole('button',{name:'Review relevant lesson'}).click();await expect(page.getByRole('heading',{name:'Put instructions in the right order'})).toBeVisible()
  await page.getByRole('navigation',{name:'Revised lesson sections'}).getByRole('button',{name:'Core assessment and checklist'}).click()
- await page.locator('input[name="revised-K1"]').nth(0).check();await expect(page.getByText('9/10 correct · Knowledge gate not met',{exact:true})).toHaveCount(0)
+ await page.locator('input[name="revised-K1"]').nth(answerKey[0]).check();await expect(page.getByText('9/10 correct · Knowledge gate not met',{exact:true})).toHaveCount(0)
  await grade.click();await expect(page.getByText('10/10 correct · Knowledge gate met',{exact:true})).toBeVisible()
  await page.reload();await expect(page.getByText('10/10 correct · Knowledge gate met',{exact:true})).toBeVisible()
 })
@@ -19,7 +19,9 @@ test('core checklist requires practical ratings and reading, not guided extensio
  await expect(instructor).toBeDisabled();await expect(complete).toBeDisabled()
  for(let i=0;i<5;i++)await page.locator('#rating-'+i).selectOption('2')
  await instructor.check();await expect(complete).toBeDisabled()
- await page.getByRole('navigation',{name:'Revised lesson sections'}).getByRole('button',{name:'What you will learn and how to practice'}).click()
+ const nav=page.getByRole('navigation',{name:'Revised lesson sections'})
+ await nav.getByText('A · Programming foundations',{exact:true}).click()
+ await nav.getByRole('button',{name:'What you will learn and how to practice'}).click()
  for(let i=0;i<18;i++)await page.getByRole('button',{name:'Mark reviewed and continue',exact:true}).click()
  await page.getByRole('button',{name:'Review this lesson and open core assessment'}).click()
  await expect(page.getByText('Core lessons reviewed: 19/19',{exact:true})).toBeVisible()
@@ -27,7 +29,7 @@ test('core checklist requires practical ratings and reading, not guided extensio
  await page.reload();await expect(page.getByText('Local core checklist complete.',{exact:false})).toBeVisible()
  await page.locator('#rating-4').selectOption('1');await expect(instructor).not.toBeChecked();await expect(complete).toBeDisabled()
  await page.locator('#rating-4').selectOption('2');await instructor.check();await complete.click()
- await page.locator('input[name="revised-K10"]').nth(1).check();await expect(instructor).not.toBeChecked();await expect(complete).toBeDisabled()
+ await page.locator('input[name="revised-K10"]').nth((answerKey[9]+1)%3).check();await expect(instructor).not.toBeChecked();await expect(complete).toBeDisabled()
  page.once('dialog',d=>d.accept());await page.getByRole('button',{name:'Reset revised progress'}).click()
  await expect(page.getByText('Core lessons reviewed: 0/19',{exact:true})).toBeVisible()
  await page.getByRole('navigation',{name:'Revised lesson sections'}).getByRole('button',{name:'Core assessment and checklist'}).click()
