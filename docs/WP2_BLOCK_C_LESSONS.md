@@ -18,7 +18,7 @@ INFORM is Yaskawa's robot programming language. A job is a named program. When o
 NOP
 END
 ```
-The ellipses represent omitted records, not actual INFORM instructions. /JOB and //NAME identify the job file and name; //POS and //INST identify sections. NOP is a no-operation instruction; END marks the end of the job. A comment is a human-readable explanation and does not itself execute the action it describes. Do not assume a comment accurately describes the current code. Read the instructions as evidence.
+The ellipses represent omitted records, not actual INFORM instructions. /JOB and //NAME identify the job file and name; //POS and //INST identify sections. NOP is a no-operation instruction; END marks the end of the job. A comment is a human-readable explanation, not an action. In the classic INFORM format, a single apostrophe introduces a comment; for example, `'Check intent` is a note, not a check. The double-slash header fields above are not ordinary executable-section comments. Do not assume a comment accurately describes the current code. Read the instructions as evidence.
 
 Motion preview only: a pendant may show a line such as MOVJ VJ=25.00. MOVJ indicates joint-interpolated motion; VJ is a joint-speed percentage setting in this example. The taught position is omitted from this display fragment. Tool, coordinate frame (reference system), position, payload, path clearance and applicable speed limits must be established from the actual approved setup. The line alone tells you neither where the robot moves nor whether motion is authorized. No motion practice belongs in this module.
 
@@ -37,7 +37,7 @@ ID: trace-inform | O3/O4/O6 | independent
 
 A WAIT checks the specified condition. In our simple level-check example, if the condition is not satisfied the next instruction is not reached. DOUT changes the specified logical output in this classroom trace. An operand is the part of an instruction that identifies its data, target or value. IN# and OT# refer to numbered signals in the illustrated formats. These addresses are fictional, not SCAR assignments.
 
-Model C is a deliberately reduced example, not the complete inspection handshake from Block B. IN#(10) represents one start prerequisite report; OT#(20) is a request; IN#(11) is a finished report. ACK, other entry conditions, REPORT, reset handshake and timeout are omitted. Initial output is OFF; external logic is excluded.
+Model C is a deliberately reduced example, not the complete inspection handshake from Block B. IN#(10) represents one start prerequisite report; OT#(20) is a request; IN#(11) is a finished report. ACK, other entry conditions, REPORT, reset handshake and timeout are omitted. Initial output is OFF; external logic is excluded. The YRC1000 INFORM manual also describes an optional WAIT time tag: expiry can advance execution even if the condition is false. A timed WAIT alone must not be interpreted as proof of completion or as an automatic fault latch. The separate timed classroom model in Block D is not that instruction's implementation.
 
 ```text
 NOP
