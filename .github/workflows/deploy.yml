@@ -19,6 +19,13 @@ jobs:
         with:
           node-version: 22
       - run: npm install
+      - name: Inspect dependency advisories and capture generated lockfile
+        shell: bash
+        run: |
+          npm audit --json > /tmp/training-audit.json || true
+          npm audit --omit=dev --json > /tmp/training-audit-runtime.json || true
+          node -e 'for (const name of ["training-audit","training-audit-runtime"]) { const report=JSON.parse(require("node:fs").readFileSync("/tmp/"+name+".json","utf8")); console.log("TRAINING_AUDIT "+name+" "+JSON.stringify({error:report.error,metadata:report.metadata,vulnerabilities:report.vulnerabilities})); }'
+          node -e 'const s=require("node:fs").readFileSync("package-lock.json","utf8"); for(let i=0;i<s.length;i+=2500) console.log("TRAINING_LOCK_CHUNK "+JSON.stringify(s.slice(i,i+2500)));'
       - run: npm test
       - run: npm run build
       - run: npx playwright install --with-deps chromium
